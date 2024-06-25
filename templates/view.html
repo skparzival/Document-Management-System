@@ -1,0 +1,23 @@
+<!-- templates/view.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ document.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>{{ document.title }}</h1>
+    <p>{{ document.description }}</p>
+    <p>Uploaded on: {{ document.upload_date }}</p>
+    <a href="{{ url_for('update_document', document_id=document.document_id) }}">
+        <button>Update</button></a>
+    </a>
+    <a href="{{ url_for('download_document', document_id=document.document_id) }}">
+        <button>Download</button></a>
+    </a>
+    <form action="{{ url_for('delete_document', document_id=document.document_id) }}" method="post" style="display:inline;">
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

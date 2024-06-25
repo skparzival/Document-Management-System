@@ -1,0 +1,27 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Document Management System</h1>
+    <a href="{{ url_for('upload') }}">Upload New Document</a>
+    <ul>
+        {% for document in documents %}
+        <li>
+            <a href="{{ url_for('view_document', document_id=document.document_id) }}">{{ document.title }}</a>
+            <a href="{{ url_for('update_document', document_id=document.document_id) }}">
+                <button>Update</button></a>
+            <a href="{{ url_for('download_document', document_id=document.document_id) }}">
+                <button>Download</button></a>
+            <form action="{{ url_for('delete_document', document_id=document.document_id) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
